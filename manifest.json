@@ -3,13 +3,18 @@
 	"version": "0.1.0",
 	"manifest_version": 2,
 
-	"description": "Slackのリアクションの絵文字アイコンを大きくする",
+	"description": "",
 
 	"content_scripts": [{
 		"matches": [
 			"https://*.slack.com/*"
 		],
+		"js": [
+			// [Ctrl + K] チャンネル検索のときに全角モードの場合でも半角に変換する
+			"js/support_channel_search.js"
+		],
 		"css": [
+			// Slackのリアクションの絵文字アイコンを大きくする
 			"css/zoom_emoji_icon.css"
 		]
 	}]

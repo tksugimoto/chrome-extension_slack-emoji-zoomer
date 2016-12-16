@@ -19,12 +19,7 @@
 		const key = codeToKeyMap[code];
 		if (!key) return;
 
-		const input = evt.target;
-		const currentValue = input.value;
-		const selectionStart = input.selectionStart;
-		const selectionEnd = input.selectionEnd;
-		input.value = currentValue.slice(0, selectionStart) + key + currentValue.slice(selectionEnd);
-		input.selectionStart = input.selectionEnd = selectionStart + 1;
+		document.execCommand("insertText", null, key);
 		evt.preventDefault();
 	});
 })();

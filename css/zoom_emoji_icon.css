@@ -1,0 +1,10 @@
+body .rxn {
+	height: 2.8rem;
+	line-height: 2.5rem;
+}
+
+body .rxn .emoji-sizer {
+	height: 1.75em;
+	width: 2em;
+	vertical-align: middle;
+}

@@ -10,6 +10,8 @@
 			"https://*.slack.com/*"
 		],
 		"js": [
+			// Emoji icon検索のときに全角モードの場合でも半角に変換する
+			"js/support_emoji_icon_search.js",
 			// [Ctrl + K] チャンネル検索のときに全角モードの場合でも半角に変換する
 			"js/support_channel_search.js"
 		],

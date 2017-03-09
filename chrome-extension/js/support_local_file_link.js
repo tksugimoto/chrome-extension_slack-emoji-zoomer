@@ -26,7 +26,14 @@
 	});
 	const isMessageBody = node => {
 		if (!node || !node.classList) return false;
-		return node.classList.contains("message_body");
+		const isOriginalMessageBody = node.classList.contains("message_body");
+		if (isOriginalMessageBody) return true;
+		const isQuotedMessageBody = node.classList.contains("msg_inline_attachment_row") && 
+									node.classList.contains("attachment_flush_text") && 
+									!node.classList.contains("attachment_source") && 
+									!node.classList.contains("attachment_footer");
+		if (isQuotedMessageBody) return true;
+		return false;
 	};
 	document.body.addEventListener("mouseover", evt => {
 		const target = evt.target;

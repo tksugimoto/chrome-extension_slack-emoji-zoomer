@@ -24,9 +24,13 @@
 		isFilePath: str => str.startsWith('"\\\\') && str.endsWith('"'),
 		generateFileUrl: str => "file:" + str.slice(1, -1).replace(/\\/g, "/")
 	});
+	const isMessageBody = node => {
+		if (!node || !node.classList) return false;
+		return node.classList.contains("message_body");
+	};
 	document.body.addEventListener("mouseover", evt => {
 		const target = evt.target;
-		if (!target.classList.contains("message_body")) return;
+		if (!isMessageBody(target)) return;
 		if (target.hasAttribute(alreadyCheckKey)) return;
 		target.setAttribute(alreadyCheckKey, true);
 		Array.from(target.childNodes).filter(node => {

@@ -23,5 +23,23 @@
 				target.replaceChild(a, textNode);
 			}
 		});
+		Array.from(target.childNodes).filter(node => {
+			return node.tagName === "CODE";
+		}).forEach(codeNode => {
+			const text = codeNode.textContent;
+			if (text.startsWith("\\\\")) {
+				const url = "file:" + text.replace(/\\/g, "/");
+				const a = document.createElement("a");
+				a.href = url;
+				target.replaceChild(a, codeNode);
+				a.appendChild(codeNode);
+			} else if (text.endsWith('"') && text.startsWith('"\\\\')) {
+				const url = "file:" + text.slice(1, -1).replace(/\\/g, "/");
+				const a = document.createElement("a");
+				a.href = url;
+				target.replaceChild(a, codeNode);
+				a.appendChild(codeNode);
+			}
+		});
 	});
 }

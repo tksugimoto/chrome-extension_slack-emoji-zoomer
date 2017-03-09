@@ -15,6 +15,12 @@
 				a.href = url;
 				a.innerText = text;
 				target.replaceChild(a, textNode);
+			} else if (text.endsWith('"') && text.startsWith('"\\\\')) {
+				const url = "file:" + text.slice(1, -1).replace(/\\/g, "/");
+				const a = document.createElement("a");
+				a.href = url;
+				a.innerText = text;
+				target.replaceChild(a, textNode);
 			}
 		});
 	});

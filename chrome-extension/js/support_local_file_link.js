@@ -37,6 +37,21 @@
 		if (isQuotedMessageBody) return true;
 		return false;
 	};
+	const generateFileAnchorElem = fileUrl => {
+		const a = document.createElement("a");
+		a.href = fileUrl;
+		a.addEventListener("click", evt => {
+			// file://リンクをクリックした時のエラーを表示させない
+			evt.preventDefault();
+			// 別の拡張でfile://リンク対応しているときに2重で開くのでイベント伝播をキャンセル
+			evt.stopPropagation();
+			chrome.runtime.sendMessage({
+				method: "openLocalFile",
+				fileUrl: fileUrl
+			});
+		});
+		return a;
+	};
 	document.body.addEventListener("mouseover", evt => {
 		const target = evt.target;
 		if (!isMessageBody(target)) return;
@@ -49,8 +64,7 @@
 			const maybeFileUrl = filePathChecker.checkAndGetFuleUrl(text);
 			if (maybeFileUrl !== null) {
 				const url = maybeFileUrl;
-				const a = document.createElement("a");
-				a.href = url;
+				const a = generateFileAnchorElem(url);
 				a.innerText = text;
 				target.replaceChild(a, textNode);
 			}
@@ -62,8 +76,7 @@
 			const maybeFileUrl = filePathChecker.checkAndGetFuleUrl(text);
 			if (maybeFileUrl !== null) {
 				const url = maybeFileUrl;
-				const a = document.createElement("a");
-				a.href = url;
+				const a = generateFileAnchorElem(url);
 				target.replaceChild(a, codeNode);
 				a.appendChild(codeNode);
 			}

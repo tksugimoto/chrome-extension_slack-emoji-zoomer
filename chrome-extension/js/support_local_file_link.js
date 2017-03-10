@@ -41,6 +41,7 @@
 		const a = document.createElement("a");
 		a.href = fileUrl;
 		a.addEventListener("click", evt => {
+			if (!evt.isTrusted) return;
 			// file://リンクをクリックした時のエラーを表示させない
 			evt.preventDefault();
 			// 別の拡張でfile://リンク対応しているときに2重で開くのでイベント伝播をキャンセル

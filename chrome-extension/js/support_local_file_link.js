@@ -63,7 +63,7 @@
 		Array.from(target.childNodes).filter(node => {
 			return node instanceof Text;
 		}).forEach(textNode => {
-			const text = textNode.textContent;
+			const text = textNode.textContent.trim();
 			const maybeFileUrl = filePathChecker.checkAndGetFuleUrl(text);
 			if (maybeFileUrl !== null) {
 				const url = maybeFileUrl;

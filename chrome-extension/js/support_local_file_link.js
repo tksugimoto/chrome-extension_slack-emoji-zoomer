@@ -28,6 +28,8 @@
 		if (!node || !node.classList) return false;
 		const isOriginalMessageBody = node.classList.contains("message_body");
 		if (isOriginalMessageBody) return true;
+		const isCommentBody = node.classList.contains("comment_body") || node.classList.contains("comment");
+		if (isCommentBody) return true;
 		const isFormattedPreElement = (node.tagName === "PRE") && node.classList.contains("special_formatting");
 		if (isFormattedPreElement) return true;
 		const isQuotedMessageBody = node.classList.contains("msg_inline_attachment_row") && 

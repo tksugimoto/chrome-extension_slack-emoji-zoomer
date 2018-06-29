@@ -26,7 +26,7 @@
 	});
 	const isMessageBody = node => {
 		if (!node || !node.classList) return false;
-		const isOriginalMessageBody = node.classList.contains("message_body");
+		const isOriginalMessageBody = node.classList.contains("message_body") || node.classList.contains("c-message__body");
 		if (isOriginalMessageBody) return true;
 		const isCommentBody = node.classList.contains("comment_body") || node.classList.contains("comment");
 		if (isCommentBody) return true;

@@ -8,3 +8,8 @@ body .rxn .emoji-sizer {
 	width: 2em;
 	vertical-align: middle;
 }
+
+/* チャンネル部分（スレッド以外） */
+body .c-reaction .emoji-sizer {
+	font-size: 36px;
+}

@@ -75,7 +75,8 @@
 		Array.from(target.childNodes).filter(node => {
 			return node.tagName === "CODE" || node.tagName === "PRE";
 		}).forEach(node => {
-			const text = node.textContent;
+			const text = node.innerText.trim();
+			if (text.includes('\n')) return;
 			const maybeFileUrl = filePathChecker.checkAndGetFuleUrl(text);
 			if (maybeFileUrl !== null) {
 				const url = maybeFileUrl;

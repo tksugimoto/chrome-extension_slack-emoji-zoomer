@@ -73,15 +73,16 @@
 			}
 		});
 		Array.from(target.childNodes).filter(node => {
-			return node.tagName === "CODE";
-		}).forEach(codeNode => {
-			const text = codeNode.textContent;
+			return node.tagName === "CODE" || node.tagName === "PRE";
+		}).forEach(node => {
+			const text = node.innerText.trim();
+			if (text.includes('\n')) return;
 			const maybeFileUrl = filePathChecker.checkAndGetFuleUrl(text);
 			if (maybeFileUrl !== null) {
 				const url = maybeFileUrl;
 				const a = generateFileAnchorElem(url);
-				target.replaceChild(a, codeNode);
-				a.appendChild(codeNode);
+				target.replaceChild(a, node);
+				a.appendChild(node);
 			}
 		});
 	});

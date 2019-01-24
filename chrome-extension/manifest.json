@@ -17,6 +17,8 @@
 			"https://*.slack.com/*"
 		],
 		"js": [
+			// コピー時の文字装飾の改善
+			"js/change-stringify-prefix-suffix.js",
 			// ローカルファイルへのパスをリンクに変更
 			"js/support_local_file_link.js"
 		],

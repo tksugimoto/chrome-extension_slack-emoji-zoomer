@@ -7,3 +7,5 @@ Slack用Chrome拡張
   * 対応書式
     * `\\server-name\path\to\file.ext`
 * Slackのリアクションの絵文字アイコンを大きくする
+* チャンネル検索（`Ctrl + K`）時のデフォルトIMEを半角入力にする
+* 絵文字検索時のデフォルトIMEを半角入力にする

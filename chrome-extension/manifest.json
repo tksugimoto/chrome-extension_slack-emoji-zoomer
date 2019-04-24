@@ -20,7 +20,11 @@
 			// コピー時の文字装飾の改善
 			"js/change-stringify-prefix-suffix.js",
 			// ローカルファイルへのパスをリンクに変更
-			"js/support_local_file_link.js"
+			"js/support_local_file_link.js",
+			// Emoji icon検索のときに全角モードの場合でも半角に変換する
+			"js/support_emoji_icon_search.js",
+			// [Ctrl + K] チャンネル検索のときに全角モードの場合でも半角に変換する
+			"js/support_channel_search.js"
 		],
 		"css": [
 			// Slackのリアクションの絵文字アイコンを大きくする

@@ -24,6 +24,11 @@
 		isFilePath: str => str.startsWith('"\\\\') && str.endsWith('"'),
 		generateFileUrl: str => 'file:' + str.slice(1, -1).replace(/\\/g, '/'),
 	});
+	// <>で囲まれている時
+	filePathChecker.addRule({
+		isFilePath: str => str.startsWith('<\\\\') && str.endsWith('>'),
+		generateFileUrl: str => 'file:' + str.slice(1, -1).replace(/\\/g, '/'),
+	});
 	const isMessageBody = node => {
 		if (!node || !node.classList) return false;
 		const isOriginalMessageBody = node.classList.contains('message_body') || node.classList.contains('c-message__body');

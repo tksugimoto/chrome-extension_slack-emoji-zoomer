@@ -60,6 +60,7 @@
 		if (!isMessageBody(target)) return;
 		if (target.hasAttribute(alreadyCheckKey)) return;
 		target.setAttribute(alreadyCheckKey, true);
+		// TODO: 処理の共通化
 		Array.from(target.childNodes).filter(node => {
 			return node instanceof Text;
 		}).forEach(textNode => {
@@ -74,15 +75,17 @@
 		});
 		Array.from(target.childNodes).filter(node => {
 			return node.tagName === 'CODE' || node.tagName === 'PRE';
+		}).flatMap(node => {
+			return Array.from(node.childNodes).filter(child => child.nodeName === '#text');
 		}).forEach(node => {
-			const text = node.innerText.trim();
+			const text = node.textContent.trim();
 			if (text.includes('\n')) return;
 			const maybeFileUrl = filePathChecker.checkAndGetFuleUrl(text);
 			if (maybeFileUrl !== null) {
 				const url = maybeFileUrl;
 				const a = generateFileAnchorElem(url);
-				target.replaceChild(a, node);
-				a.appendChild(node);
+				a.innerText = text;
+				node.parentNode.replaceChild(a, node);
 			}
 		});
 	});

@@ -37,6 +37,8 @@
 		if (isCommentBody) return true;
 		const isFormattedPreElement = (node.tagName === 'PRE') && node.classList.contains('special_formatting');
 		if (isFormattedPreElement) return true;
+		const isFormattedCodeElement = (node.tagName === 'CODE') && node.classList.contains('c-mrkdwn__code');
+		if (isFormattedCodeElement) return true;
 		const isQuotedMessageBody = node.classList.contains('msg_inline_attachment_row') &&
 									node.classList.contains('attachment_flush_text') &&
 									!node.classList.contains('attachment_source') &&

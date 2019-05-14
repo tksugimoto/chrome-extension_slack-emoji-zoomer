@@ -11,7 +11,7 @@
 					return rule.isFilePath(maybePathString);
 				});
 				if (!matchedRule) return null;
-				return matchedRule.generateFileUrl(maybePathString);
+				return matchedRule.generateFileUrl(maybePathString).replace(/[%#]/g, encodeURIComponent);
 			},
 		};
 	})();

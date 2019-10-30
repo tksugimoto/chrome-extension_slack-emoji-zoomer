@@ -68,18 +68,20 @@
 		if (target.hasAttribute(alreadyCheckKey)) return;
 		target.setAttribute(alreadyCheckKey, true);
 		// TODO: 処理の共通化
-		Array.from(target.childNodes).filter(node => {
-			return node instanceof Text;
-		}).forEach(textNode => {
-			const text = textNode.textContent.trim();
-			const maybeFileUrl = filePathChecker.checkAndGetFuleUrl(text);
-			if (maybeFileUrl !== null) {
-				const url = maybeFileUrl;
-				const a = generateFileAnchorElem(url);
-				a.innerText = text;
-				target.replaceChild(a, textNode);
-			}
-		});
+		if (target.tagName !== 'CODE') {
+			Array.from(target.childNodes).filter(node => {
+				return node instanceof Text;
+			}).forEach(textNode => {
+				const text = textNode.textContent.trim();
+				const maybeFileUrl = filePathChecker.checkAndGetFuleUrl(text);
+				if (maybeFileUrl !== null) {
+					const url = maybeFileUrl;
+					const a = generateFileAnchorElem(url);
+					a.innerText = text;
+					target.replaceChild(a, textNode);
+				}
+			});
+		}
 		Array.from(target.childNodes).filter(node => {
 			return node.tagName === 'PRE';
 		}).flatMap(node => {

@@ -1,15 +1,4 @@
-body .rxn {
-	height: 2.8rem;
-	line-height: 2.5rem;
-}
-
-body .rxn .emoji-sizer {
-	height: 1.75em;
-	width: 2em;
-	vertical-align: middle;
-}
-
-/* チャンネル部分（スレッド以外） */
-body .c-reaction .emoji-sizer {
-	font-size: 36px;
+body .c-reaction .c-emoji__small {
+    width: 32px;
+    height: 32px;
 }

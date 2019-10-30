@@ -81,7 +81,7 @@
 			}
 		});
 		Array.from(target.childNodes).filter(node => {
-			return node.tagName === 'CODE' || node.tagName === 'PRE';
+			return node.tagName === 'PRE';
 		}).flatMap(node => {
 			return Array.from(node.childNodes).filter(child => child.nodeName === '#text');
 		}).forEach(node => {
@@ -93,6 +93,18 @@
 				const a = generateFileAnchorElem(url);
 				a.innerText = text;
 				node.parentNode.replaceChild(a, node);
+			}
+		});
+		Array.from(target.childNodes).filter(node => {
+			return node.tagName === 'CODE';
+		}).forEach(code => {
+			const text = code.textContent.trim();
+			const maybeFileUrl = filePathChecker.checkAndGetFuleUrl(text);
+			if (maybeFileUrl !== null) {
+				const url = maybeFileUrl;
+				const a = generateFileAnchorElem(url);
+				code.parentNode.replaceChild(a, code);
+				a.append(code);
 			}
 		});
 	});
